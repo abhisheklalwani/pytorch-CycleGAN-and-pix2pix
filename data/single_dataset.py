@@ -1,7 +1,7 @@
 from data.base_dataset import BaseDataset, get_transform
 from data.image_folder import make_dataset
 from PIL import Image
-
+import torch
 
 class SingleDataset(BaseDataset):
     """This dataset class can load a set of images specified by the path --dataroot /path/to/data.
@@ -18,7 +18,7 @@ class SingleDataset(BaseDataset):
         BaseDataset.__init__(self, opt)
         self.A_paths = sorted(make_dataset(opt.dataroot, opt.max_dataset_size))
         input_nc = self.opt.output_nc if self.opt.direction == 'BtoA' else self.opt.input_nc
-        self.transform = get_transform(opt, grayscale=(input_nc == 1))
+        self.transform = get_transform(opt)
 
     def __getitem__(self, index):
         """Return a data point and its metadata information.
@@ -32,7 +32,15 @@ class SingleDataset(BaseDataset):
         """
         A_path = self.A_paths[index]
         A_img = Image.open(A_path).convert('RGB')
-        A = self.transform(A_img)
+        w,h = A_img.size
+        w2 = int(w/2)
+        A = A_img.crop((0, 0, w2, h))
+        A_Palette = A_img.crop((w2, 0, w, h))
+        A_transform = get_transform(self.opt,grayscale = True)
+        A_Palette_transform = get_transform(self.opt,grayscale = False)
+        A = A_transform(A)
+        A_Palette = A_Palette_transform(A_Palette)
+        A = torch.cat((A,A_Palette),dim=0)
         return {'A': A, 'A_paths': A_path}
 
     def __len__(self):

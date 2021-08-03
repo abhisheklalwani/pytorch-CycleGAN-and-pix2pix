@@ -2,7 +2,7 @@ import os
 from data.base_dataset import BaseDataset, get_params, get_transform
 from data.image_folder import make_dataset
 from PIL import Image
-
+import torch
 
 class AlignedDataset(BaseDataset):
     """A dataset class for paired image dataset.
@@ -21,8 +21,8 @@ class AlignedDataset(BaseDataset):
         self.dir_AB = os.path.join(opt.dataroot, opt.phase)  # get the image directory
         self.AB_paths = sorted(make_dataset(self.dir_AB, opt.max_dataset_size))  # get image paths
         assert(self.opt.load_size >= self.opt.crop_size)   # crop_size should be smaller than the size of loaded image
-        self.input_nc = self.opt.output_nc if self.opt.direction == 'BtoA' else self.opt.input_nc
-        self.output_nc = self.opt.input_nc if self.opt.direction == 'BtoA' else self.opt.output_nc
+        self.input_nc = 4
+        self.output_nc = 3
 
     def __getitem__(self, index):
         """Return a data point and its metadata information.
@@ -41,17 +41,21 @@ class AlignedDataset(BaseDataset):
         AB = Image.open(AB_path).convert('RGB')
         # split AB image into A and B
         w, h = AB.size
-        w2 = int(w / 2)
-        A = AB.crop((0, 0, w2, h))
-        B = AB.crop((w2, 0, w, h))
+        w3 = int(w / 3)
+        A = AB.crop((0, 0, w3, h))
+        A_Palette = AB.crop((w3, 0, 2*w3, h))
+        B = AB.crop((2*w3, 0, w, h))
 
         # apply the same transform to both A and B
         transform_params = get_params(self.opt, A.size)
-        A_transform = get_transform(self.opt, transform_params, grayscale=(self.input_nc == 1))
+        A_transform = get_transform(self.opt, transform_params, grayscale=True)
+        A_Palette_transform = get_transform(self.opt, transform_params, grayscale=False)
         B_transform = get_transform(self.opt, transform_params, grayscale=(self.output_nc == 1))
 
         A = A_transform(A)
+        A_Palette = A_Palette_transform(A_Palette)
         B = B_transform(B)
+        A = torch.cat((A,A_Palette),dim=0)
 
         return {'A': A, 'B': B, 'A_paths': AB_path, 'B_paths': AB_path}
 
