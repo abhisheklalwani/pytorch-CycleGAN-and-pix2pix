@@ -8,7 +8,7 @@
 
 - Clone this repo:
 ```bash
-git clone https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+git clone https://github.com/abhisheklalwani/pytorch-CycleGAN-and-pix2pix.git
 cd pytorch-CycleGAN-and-pix2pix
 ```
 
@@ -18,19 +18,11 @@ cd pytorch-CycleGAN-and-pix2pix
   - For Docker users, we provide the pre-built Docker image and Dockerfile. Please refer to our [Docker](docs/docker.md) page.
   - For Repl users, please click [![Run on Repl.it](https://repl.it/badge/github/junyanz/pytorch-CycleGAN-and-pix2pix)](https://repl.it/github/junyanz/pytorch-CycleGAN-and-pix2pix).
 
-### pix2pix train/test
-- Download a pix2pix dataset (e.g.[facades](http://cmp.felk.cvut.cz/~tylecr1/facade/)):
-```bash
-bash ./datasets/download_pix2pix_dataset.sh facades
-```
-- To view training results and loss plots, run `python -m visdom.server` and click the URL http://localhost:8097.
-- Train a model:
-```bash
-#!./scripts/train_pix2pix.sh
-python train.py --dataroot ./datasets/facades --name facades_pix2pix --model pix2pix --direction BtoA
-```
-To see more intermediate results, check out  `./checkpoints/facades_pix2pix/web/index.html`.
-
+### pix2pix test
+1. Download the zipped checkpoints folder from the link here and extract it in the main folder. It contains 3 models for the 3 use-cases - 
+a. Edges-to-Textures (dtd_pix2pix_150)
+b. Edges-plus-Color-to-Texture (Global) (dtd_pix2pix_150_single_color)
+3. Edges-plus-Color-to-Texture (Local) (dtd_pix2pix_100_local_color)
 - Test the model (`bash ./scripts/test_pix2pix.sh`):
 ```bash
 #!./scripts/test_pix2pix.sh
