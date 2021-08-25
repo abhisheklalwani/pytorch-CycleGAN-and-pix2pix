@@ -19,7 +19,7 @@ cd pytorch-CycleGAN-and-pix2pix
   - For Repl users, please click [![Run on Repl.it](https://repl.it/badge/github/junyanz/pytorch-CycleGAN-and-pix2pix)](https://repl.it/github/junyanz/pytorch-CycleGAN-and-pix2pix).
 
 ### pix2pix test
-1. Download the zipped checkpoints folder from the [link](www.google.com) here and extract it in the main folder. It contains 3 models for the 3 supported use-cases.
+1. Download the zipped checkpoints folder from the [link](https://drive.google.com/file/d/1CTyLfVdBEUra1d4pt3spc-813fK3Vk4b/view?usp=sharing) here and extract it in the main folder. It contains 3 models for the 3 supported use-cases.
     - Edges-to-Textures (dtd_pix2pix_150)
     - Edges-plus-Color-to-Texture (Global) (dtd_pix2pix_150_single_color)
     - Edges-plus-Color-to-Texture (Local) (dtd_pix2pix_100_local_color)
