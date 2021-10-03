@@ -1,4 +1,4 @@
-## Introductions
+## Introduction
 This repository highlights my research over the Summer of 2021 at the Computer Vision Lab, University of Massachusetts Amherst, under the supervison of Professor Subhransu Maji.
 
 My research majorly revolves around the generation of realistic textures from basic sketches.
