@@ -5,6 +5,9 @@ My research majorly revolves around the generation of realistic textures from ba
 
 We have majorly explored the conditional GAN architecture for this task, with a specific focus on Pix2Pix, given the easily expandable nature of the Pix2Pix architecture.
 
+We have also explored various inputs in this task, such as global color palettes as well as local color scribbles, which supplement our basic input of human-drawn sketches.
+We modify the basic pre-processing pipeline of the Pix2Pix to support these inputs.
+
 We have also focused on StyleGAN architecture, which we will document in a separate repository.
 
 ## Prerequisites
