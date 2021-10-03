@@ -1,3 +1,9 @@
+## Introductions
+This repository highlights my research over the Summer of 2021 at the Computer Vision Lab, University of Massachusetts Amherst, under the supervison of Professor Subhransu Maji.
+My research majorly revolves around the generation of realistic textures from basic sketches.
+We have majorly explored the conditional GAN architecture for this task, with a specific focus on Pix2Pix, given the general nature of Pix2Pix architecture.
+We have also focused on StyleGAN architecture, which we will document in a separate repository.
+
 ## Prerequisites
 - Linux or macOS
 - Python 3
