@@ -10,6 +10,14 @@ We modify the basic pre-processing pipeline of the Pix2Pix to support these inpu
 
 We have also focused on StyleGAN architecture, which we will document in a separate repository.
 
+## Inference Playground
+[Colab Notebook](https://colab.research.google.com/drive/1ftt2iLnV1IOrhXD_z5DssWwMYkjr0v-R?usp=sharing) for experimenting with various models depending upon the type of input data
+
+## Pre-trained Models
+- Vanilla Pix2Pix DTD - [Link](https://drive.google.com/drive/folders/1tD3YjHnAC3UBitBcMwuUwawkcOOMwInb?usp=sharing)
+- Pix2Pix DTD Single Dominant Color - [Link](https://drive.google.com/drive/folders/1L4Y76V37qTuUgJSxZNtCby7enKgPKxaf?usp=sharing)
+- Pix2Pix DTD Color Scribbles - [Link](https://drive.google.com/drive/folders/13jpmKKZrgIhm2Dlg0YzLZL2qqj1qImOW?usp=sharing)
+
 ## Prerequisites
 - Linux or macOS
 - Python 3
